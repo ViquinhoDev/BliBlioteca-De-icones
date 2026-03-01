@@ -1,1 +1,6 @@
-
+[
+  {"name":"cloud","svg":"<svg viewBox='0 0 24 24' fill='currentColor'><path d='M6 19h13a4 4 0 0 0 0-8 6 6 0 1 0-11 3'/></svg>","tags":["nuvem","internet","cdn"]},
+  {"name":"shield","svg":"<svg viewBox='0 0 24 24' fill='currentColor'><path d='M12 2l7 4v6c0 5-3.5 9-7 10-3.5-1-7-5-7-10V6l7-4z'/></svg>","tags":["segurança","protecao"]},
+  {"name":"lock","svg":"<svg viewBox='0 0 24 24' fill='currentColor'><path d='M6 10V8a6 6 0 1 1 12 0v2h1v12H5V10h1z'/></svg>","tags":["cadeado","privado"]}
+  // adicione o restante dos ícones aqui
+]
