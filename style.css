@@ -1,1 +1,132 @@
+:root {
+  --bg: #0f172a;
+  --panel: #111827;
+  --text: #f3f4f6;
+  --muted: #9ca3af;
+  --border: #334155;
+  --active: #16a34a;
+  --active-border: #22c55e;
+}
 
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: radial-gradient(circle at top, #1e293b, var(--bg));
+  color: var(--text);
+  font-family: Arial, sans-serif;
+}
+
+.container {
+  width: min(1100px, 92vw);
+  margin: 2.5rem auto;
+}
+
+h1 {
+  text-align: center;
+  font-family: "Cinzel", serif;
+  margin: 0 0 1.5rem;
+  letter-spacing: 0.05em;
+}
+
+#searchInput {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 0.65rem;
+  padding: 0.85rem 1rem;
+  font-size: 1rem;
+  background: #020617;
+  color: var(--text);
+}
+
+.tabs {
+  display: flex;
+  gap: 0.75rem;
+  margin: 1rem 0 1.25rem;
+}
+
+.tab {
+  border: 1px solid var(--border);
+  background: #1f2937;
+  color: var(--text);
+  border-radius: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+}
+
+.tab.is-active {
+  background: #374151;
+  border-color: #6b7280;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(120px, 1fr));
+  gap: 0.85rem;
+}
+
+.card {
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  min-height: 110px;
+  background: var(--panel);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem;
+  cursor: pointer;
+  transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;
+}
+
+.card:hover {
+  transform: translateY(-1px);
+  border-color: #64748b;
+}
+
+.card.selected {
+  background: var(--active);
+  border-color: var(--active-border);
+}
+
+.card .symbol {
+  width: 36px;
+  height: 36px;
+  display: grid;
+  place-items: center;
+  font-size: 1.7rem;
+  color: #fff;
+}
+
+.card .symbol svg {
+  width: 30px;
+  height: 30px;
+}
+
+.card .name {
+  font-size: 0.78rem;
+  color: #e5e7eb;
+  text-align: center;
+  word-break: break-word;
+}
+
+.empty-state {
+  margin-top: 1.25rem;
+  color: var(--muted);
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
