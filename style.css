@@ -1,11 +1,14 @@
 :root {
-  --bg: #0f172a;
-  --panel: #111827;
-  --text: #f3f4f6;
-  --muted: #9ca3af;
-  --border: #334155;
+  --bg: #f8fafc;
+  --panel: #ffffff;
+  --text: #0f172a;
+  --muted: #64748b;
+  --border: #dbe3ee;
   --active: #16a34a;
-  --active-border: #22c55e;
+  --active-border: #15803d;
+  --tab-bg: #f1f5f9;
+  --tab-active-bg: #e2e8f0;
+  --input-bg: #ffffff;
 }
 
 * {
@@ -15,7 +18,7 @@
 body {
   margin: 0;
   min-height: 100vh;
-  background: radial-gradient(circle at top, #1e293b, var(--bg));
+  background: linear-gradient(180deg, #ffffff 0%, #f8fafc 100%);
   color: var(--text);
   font-family: Arial, sans-serif;
 }
@@ -38,8 +41,12 @@ h1 {
   border-radius: 0.65rem;
   padding: 0.85rem 1rem;
   font-size: 1rem;
-  background: #020617;
+  background: var(--input-bg);
   color: var(--text);
+}
+
+#searchInput::placeholder {
+  color: #94a3b8;
 }
 
 .tabs {
@@ -50,7 +57,7 @@ h1 {
 
 .tab {
   border: 1px solid var(--border);
-  background: #1f2937;
+  background: var(--tab-bg);
   color: var(--text);
   border-radius: 0.5rem;
   padding: 0.5rem 1rem;
@@ -58,8 +65,8 @@ h1 {
 }
 
 .tab.is-active {
-  background: #374151;
-  border-color: #6b7280;
+  background: var(--tab-active-bg);
+  border-color: #cbd5e1;
 }
 
 .grid {
@@ -85,7 +92,7 @@ h1 {
 
 .card:hover {
   transform: translateY(-1px);
-  border-color: #64748b;
+  border-color: #94a3b8;
 }
 
 .card.selected {
@@ -99,7 +106,12 @@ h1 {
   display: grid;
   place-items: center;
   font-size: 1.7rem;
-  color: #fff;
+  color: #0f172a;
+}
+
+.card.selected .symbol,
+.card.selected .name {
+  color: #ffffff;
 }
 
 .card .symbol svg {
@@ -109,7 +121,7 @@ h1 {
 
 .card .name {
   font-size: 0.78rem;
-  color: #e5e7eb;
+  color: #334155;
   text-align: center;
   word-break: break-word;
 }
@@ -117,6 +129,26 @@ h1 {
 .empty-state {
   margin-top: 1.25rem;
   color: var(--muted);
+}
+
+.toast {
+  position: fixed;
+  right: 1rem;
+  bottom: 1rem;
+  background: #0f172a;
+  color: #ffffff;
+  padding: 0.65rem 0.8rem;
+  border-radius: 0.5rem;
+  font-size: 0.85rem;
+  opacity: 0;
+  transform: translateY(10px);
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.toast.show {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 .sr-only {
