@@ -48,11 +48,20 @@ function showToast(message) {
   }, 1400);
 }
 
-async function copyToClipboard(text) {
-  if (!text) return false;
+async function copyToClipboard(text, htmlText) {
+  if (!text && !htmlText) return false;
 
   try {
     if (navigator.clipboard && window.isSecureContext) {
+      if (htmlText && window.ClipboardItem) {
+        const payload = new ClipboardItem({
+          "text/plain": new Blob([text], { type: "text/plain" }),
+          "text/html": new Blob([htmlText], { type: "text/html" }),
+        });
+        await navigator.clipboard.write([payload]);
+        return true;
+      }
+
       await navigator.clipboard.writeText(text);
       return true;
     }
@@ -62,12 +71,13 @@ async function copyToClipboard(text) {
 
   try {
     const helper = document.createElement("textarea");
-    helper.value = text;
+    helper.value = text || htmlText || "";
     helper.setAttribute("readonly", "");
     helper.style.position = "fixed";
     helper.style.opacity = "0";
     document.body.appendChild(helper);
     helper.select();
+    helper.setSelectionRange(0, helper.value.length);
     const copied = document.execCommand("copy");
     document.body.removeChild(helper);
     return copied;
@@ -114,7 +124,7 @@ function createIconCard(icon, index) {
 
   card.addEventListener("click", async () => {
     toggleSelected(id);
-    const copied = await copyToClipboard(icon.svg);
+    const copied = await copyToClipboard(icon.svg, icon.svg);
     showToast(copied ? `Ícone "${icon.name}" copiado!` : "Não foi possível copiar o ícone.");
   });
 
